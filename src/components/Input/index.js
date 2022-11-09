@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react'
 
-function Input({todos, addTodo}) {
+function Input({ todos, addTodo }) {
     const [input, setInput] = useState('');
 
     useEffect(() => {
@@ -8,21 +8,20 @@ function Input({todos, addTodo}) {
     }, [todos])
 
     const onChangeInput = (e) => {
-        setInput([e.target.name]=e.target.value)
+        setInput([e.target.name] = e.target.value)
     }
     const handleKeyDown = (event) => {
         if (input === '') {
             return false;
         }
         if (event.key === 'Enter') {
-          console.log(input)
             addTodo([...todos, input])
         }
-      }
+    }
 
     return (
         <div>
-            <input name="input" value={input} onChange={onChangeInput} onKeyDown={handleKeyDown} />
+            <input placeholder='What needs to be done?' name="input" value={input} onChange={onChangeInput} onKeyDown={handleKeyDown} />
         </div>
     )
 }
