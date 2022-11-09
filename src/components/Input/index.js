@@ -1,16 +1,28 @@
-import {useState} from 'react'
+import { useState, useEffect } from 'react'
 
-function Input() {
-    const [todo, setTodo] =useState('');
-    
+function Input({todos, addTodo}) {
+    const [input, setInput] = useState('');
+
+    useEffect(() => {
+        setInput('')
+    }, [todos])
+
+    const onChangeInput = (e) => {
+        setInput([e.target.name]=e.target.value)
+    }
     const handleKeyDown = (event) => {
+        if (input === '') {
+            return false;
+        }
         if (event.key === 'Enter') {
+          console.log(input)
+            addTodo([...todos, input])
         }
       }
 
     return (
         <div>
-            <input name="todo" value={todo} onKeyDown={handleKeyDown} onChange={(event) => setTodo(event.target.value)}  />
+            <input name="input" value={input} onChange={onChangeInput} onKeyDown={handleKeyDown} />
         </div>
     )
 }

@@ -1,8 +1,14 @@
 import React from 'react'
 
-function List() {
+function List({todos}) {
     return (
-        <div>List</div>
+        <div>
+            <ul>
+                {todos.map((todo, i) => (
+                    <li key={i}>{todo}</li>
+                ))}
+            </ul>
+        </div>
     )
 }
 
